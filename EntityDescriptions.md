@@ -1,9 +1,11 @@
 ## Employee
 - employeeId
+- name
 - email
 - password (revisit)
-- OauthToken (revisit)
-- TokenExpiry (revisit)
+- oAuthToken (revisit)
+- tokenExpiry (revisit)
+- createdAt
 
 ## Idea
 - ideaId
@@ -11,7 +13,10 @@
 - description
 - createdBy
 - creationDate
-- tags
+
+## IdeaTag
+- ideaId
+- tagId
 
 ## Vote
 - voteId
@@ -19,10 +24,11 @@
 - ideaId
 - voteDate
 
-## Interest
-- interestId
+## Collaborator
+- collaborationId
 - employeeId
 - ideaId
+- expressedAt
 
 ## Tags
 - tagId
