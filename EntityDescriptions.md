@@ -24,7 +24,7 @@
 - ideaId
 - voteDate
 
-## Collaborator
+## Collaboration
 - collaborationId
 - employeeId
 - ideaId
