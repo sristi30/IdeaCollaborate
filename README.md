@@ -144,6 +144,7 @@ Once the application is running, you can interact with the API via **Postman** o
 - **URL:** `GET http://localhost:8080/ideas`
 - **Headers:**
     - Authorization: `Bearer <your-jwt-token>`
+ 
 The ideas will be sorted by vote count by default. In order to sort by creation date, pass the sortBt parameter:
 - **URL:** `GET http://localhost:8080/ideas?sortBy=creationDate`
 - **Headers:**
