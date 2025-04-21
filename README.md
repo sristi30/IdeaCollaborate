@@ -11,7 +11,6 @@ This is a collaborative platform where employees can share, vote, and collaborat
 4. [API Endpoints](#api-endpoints)
 5. [Running the Application](#running-the-application)
 6. [Testing the Application](#testing-the-application)
-7. [License](#license)
 
 ## Features
 - **Employee Login:** Employees can log in using their employee ID.
