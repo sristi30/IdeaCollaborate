@@ -90,12 +90,32 @@ This is a collaborative platform where employees can share, vote, and collaborat
 
 Once the application is running, you can interact with the API via **Postman** or **cURL**.
 
-### Example Login Request (Postman or cURL)
+### Example Signup Request
+- **URL:** `POST http://localhost:8080/auth/signup`
+- **Headers:** Content-Type: application/json
+- **Body (JSON):**
+  ```json
+  {
+    "employeeId": "456",
+    "name": "Peter Smith",
+    "email": "peter.smith@example.com",
+    "password": "password456"
+}
+  ```
+- **Response:**
+  ```json
+  {
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI5ODciLCJpYXQiOjE3NDUyMTI1NDIsImV4cCI6MTc0NTIxNjE0Mn0.NT8hEy8iBtyNMSxl20D0CgB-Zh5hxQBlMp0eyMBupMvsI93ujXluQNBLuWb1knbI2S9S8xjqzQb5mT1PUx7AiQ"
+  }
+  ```
+
+### Example Login Request
 - **URL:** `POST http://localhost:8080/auth/login`
 - **Body (JSON):**
   ```json
   {
-    "employeeId": "12345"
+    "employeeId": "456",
+    "password": "password456"
   }
   ```
 - **Response:**
@@ -105,23 +125,41 @@ Once the application is running, you can interact with the API via **Postman** o
   }
   ```
 
-### Example Idea Submission Request (Postman or cURL)
+### Example Idea Submission Request
 - **URL:** `POST http://localhost:8080/ideas`
 - **Headers:**
     - Authorization: `Bearer <your-jwt-token>`
 - **Body (JSON):**
   ```json
   {
-    "title": "New Idea",
-    "description": "This is a new idea for collaboration."
+  "title": "My First Innovative Idea",
+  "description": "A platform to share ideas across teams.",
+  "tags": ["collaboration", "innovation"]
   }
   ```
+  Make sure you have the tags already inserted in the tag table before trying to insert the idea
 
-### Example Vote on Idea Request (Postman or cURL)
+### Example View all Ideas
+- **URL:** `GET http://localhost:8080/ideas`
+- **Headers:**
+    - Authorization: `Bearer <your-jwt-token>`
+The ideas will be sorted by vote count by default. In order to sort by creation date, pass the sortBt parameter:
+- **URL:** `GET http://localhost:8080/ideas?sortBy=creationDate`
+- **Headers:**
+    - Authorization: `Bearer <your-jwt-token>`
+### Example Vote on Idea Request
 - **URL:** `POST http://localhost:8080/ideas/{ideaId}/vote`
 - **Headers:**
     - Authorization: `Bearer <your-jwt-token>`
 
-## Testing the Application
+### Example Collaborate on Idea Request
+- **URL:** `POST http://localhost:8080/ideas/{ideaId}/collaborate`
+- **Headers:**
+    - Authorization: `Bearer <your-jwt-token>`
+ 
+### Example Get all Collaborators Request
+- **URL:** `GET http://localhost:8080/ideas/{ideaId}/collaborators`
+- **Headers:**
+    - Authorization: `Bearer <your-jwt-token>`
 
-You can test the API by making requests using Postman or any HTTP client. Ensure that you include the `Authorization` header with the JWT token obtained after logging in.
+
