@@ -16,29 +16,23 @@ This is a collaborative platform where employees can share, vote, and collaborat
 ## Features
 - **Employee Login:** Employees can log in using their employee ID.
 - **Idea Submission:** Employees can submit their ideas for collaboration.
-- **Voting on Ideas:** Employees can vote on existing ideas to prioritize them.
-- **Collaboration on Ideas:** Employees can collaborate on ideas by adding their input.
+- **Voting on Ideas:** Employees can vote on existing ideas, except their own idea.
+- **Collaboration on Ideas:** Employees can express interest in collaborating on an idea.
+- **View Collaborators:** Employees can see a list of other employees who have expressed interest in collaborating on an idea.
 
 ## Tech Stack
 - **Backend:** Spring Boot (Java)
 - **Database:** PostgreSQL
 - **Authentication:** JWT (JSON Web Tokens)
 - **Containerization:** Docker
-- **API Documentation:** Swagger
 
 ## Setup
 
 ### Docker Setup
 
-1. **Clone the repository**:
-   ```bash
-   git clone <your-repository-url>
-   cd <your-repository-folder>
-   ```
+1. **Ensure Docker and Docker Compose are installed**.
 
-2. **Ensure Docker and Docker Compose are installed**. If not, download and install Docker from the [official website](https://www.docker.com/).
-
-3. **Build and start the Docker containers**:
+2. **Build and start the Docker containers**:
    ```bash
    docker-compose up --build
    ```
@@ -47,12 +41,12 @@ This is a collaborative platform where employees can share, vote, and collaborat
     - Build the application JAR file using the Maven build process.
     - Start the PostgreSQL database container and the Spring Boot application container.
 
-4. **Access the application** at:
+3. **Access the application** at:
    ```bash
    http://localhost:8080
    ```
 
-5. **Login with your employee ID** using the `/auth/login` endpoint to receive a JWT token.
+4. **Login with your employee ID** using the `/auth/login` endpoint to receive a JWT token, using a REST client, like Postman.
 
 ### Local Setup (Without Docker)
 
@@ -147,5 +141,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### Additional Notes:
 - **JWT Authentication**: Ensure you include the `Authorization` header with `Bearer <your-jwt-token>` for endpoints that require authentication.
 - **Docker**: With Docker Compose, the application and database run in separate containers but can communicate with each other over a private Docker network.
-
-Feel free to tweak the contents based on your preferences and project specifics!
