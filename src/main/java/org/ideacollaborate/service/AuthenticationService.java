@@ -1,9 +1,7 @@
 package org.ideacollaborate.service;
 
-import org.ideacollaborate.exception.ResourceNotFoundException;
 import org.ideacollaborate.model.entity.Employee;
 import org.ideacollaborate.repository.EmployeeRepository;
-import org.ideacollaborate.security.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,20 +14,14 @@ public class AuthenticationService {
 
     private final EmployeeRepository employeeRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @Autowired
     public AuthenticationService(EmployeeRepository employeeRepository,
-                                 PasswordEncoder passwordEncoder) {
+                                 PasswordEncoder passwordEncoder, JwtService jwtService) {
         this.employeeRepository = employeeRepository;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    public Employee authenticateEmployee(String token) {
-        String employeeId = TokenUtil.extractEmployeeIdFromToken(token);
-
-        // Fetch employee from DB
-        return employeeRepository.findByEmployeeId(employeeId)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + employeeId));
+        this.jwtService = jwtService;
     }
 
     // Validate employee credentials and generate an OAuth token.
@@ -42,7 +34,7 @@ public class AuthenticationService {
         }
 
         // Generate an OAuth token after successful authentication
-        return TokenUtil.generateToken(employee);
+        return jwtService.generateToken(employeeId);
     }
 
     public String signup(String employeeId, String name, String email, String password) {
@@ -52,7 +44,7 @@ public class AuthenticationService {
 
         Employee employee = new Employee(employeeId, name, email, passwordEncoder.encode(password), LocalDateTime.now());
         employeeRepository.save(employee);
-        return TokenUtil.generateToken(employee);  // generate token right after signup (optional, but recommended)
+        return jwtService.generateToken(employeeId);  // generate token right after signup (optional, but recommended)
     }
 }
 

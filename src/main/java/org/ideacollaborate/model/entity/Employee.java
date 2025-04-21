@@ -34,6 +34,10 @@ public class Employee {
         this.createdAt = createdAt;
     }
 
+    public Employee() {
+
+    }
+
     public String getEmployeeId() {
         return employeeId;
     }

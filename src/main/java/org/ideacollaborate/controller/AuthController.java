@@ -22,7 +22,7 @@ public class AuthController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping
+    @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest) {
         String token = authenticationService.authenticate(loginRequest.getEmployeeId(), loginRequest.getPassword());
         return ResponseEntity.ok(new AuthResponse(token));
