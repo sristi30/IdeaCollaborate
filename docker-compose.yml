@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # Postgres service
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sristi123
+      POSTGRES_DB: idea_db
+    ports:
+      - "5432:5432"  # Map port 5432 of container to host
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  # Spring Boot application service
+  app:
+    build: .
+    container_name: idea-collaborate-app
+    ports:
+      - "8080:8080"  # Expose app on port 8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/idea_db  # Point to Postgres container
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: sristi123
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: true
+      JWT_SECRET: 4tLBy4jckTh2u7B3zWqG0KfMqukUK1p+2VLQqHepxvCzNTv3FRC1h1dn93Ks0z+H3+Sn9OifbR68V4HymCKaUw==
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+
+# Named volume for Postgres data persistence
+volumes:
+  postgres_data:
+
+# Networks to allow communication between containers
+networks:
+  app-network:
+    driver: bridge
