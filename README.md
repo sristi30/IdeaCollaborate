@@ -50,19 +50,13 @@ This is a collaborative platform where employees can share, vote, and collaborat
 
 ### Local Setup (Without Docker)
 
-1. **Clone the repository**:
-   ```bash
-   git clone <your-repository-url>
-   cd <your-repository-folder>
-   ```
-
-2. **Install dependencies**:
+1. **Install dependencies**:
    Ensure you have **Java** and **Maven** installed on your local machine.
 
-3. **Run PostgreSQL locally**:
+2. **Run PostgreSQL locally**:
    Make sure PostgreSQL is running locally on port `5432` with a database named `idea_db`.
 
-4. **Configure `application.properties`**:
+3. **Configure `application.properties`**:
    Set the correct database connection in `src/main/resources/application.properties`:
    ```properties
    spring.datasource.url=jdbc:postgresql://localhost:5432/idea_db
@@ -70,18 +64,18 @@ This is a collaborative platform where employees can share, vote, and collaborat
    spring.datasource.password=<your-password>
    ```
 
-5. **Build and run the application**:
+4. **Build and run the application**:
    ```bash
    mvn clean package
    java -jar target/idea-collaborate-backend-1.0.0.jar
    ```
 
-6. **Access the application** at:
+5. **Access the application** at:
    ```bash
    http://localhost:8080
    ```
 
-7. **Login with your employee ID** using the `/auth/login` endpoint to receive a JWT token.
+6. **Login with your employee ID** using the `/auth/login` endpoint to receive a JWT token.
 
 ## API Endpoints
 
@@ -131,13 +125,3 @@ Once the application is running, you can interact with the API via **Postman** o
 ## Testing the Application
 
 You can test the API by making requests using Postman or any HTTP client. Ensure that you include the `Authorization` header with the JWT token obtained after logging in.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-### Additional Notes:
-- **JWT Authentication**: Ensure you include the `Authorization` header with `Bearer <your-jwt-token>` for endpoints that require authentication.
-- **Docker**: With Docker Compose, the application and database run in separate containers but can communicate with each other over a private Docker network.
