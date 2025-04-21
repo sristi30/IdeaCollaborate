@@ -99,7 +99,7 @@ Once the application is running, you can interact with the API via **Postman** o
     "name": "Peter Smith",
     "email": "peter.smith@example.com",
     "password": "password456"
-}
+  }
   ```
 - **Response:**
   ```json
