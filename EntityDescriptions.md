@@ -2,9 +2,7 @@
 - employeeId
 - name
 - email
-- password (revisit)
-- oAuthToken (revisit)
-- tokenExpiry (revisit)
+- password
 - createdAt
 
 ## Idea
