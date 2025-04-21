@@ -110,6 +110,7 @@ Once the application is running, you can interact with the API via **Postman** o
 
 ### Example Login Request
 - **URL:** `POST http://localhost:8080/auth/login`
+- Headers: Content-Type: application/json
 - **Body (JSON):**
   ```json
   {
@@ -128,6 +129,7 @@ Once the application is running, you can interact with the API via **Postman** o
 - **URL:** `POST http://localhost:8080/ideas`
 - **Headers:**
     - Authorization: `Bearer <your-jwt-token>`
+    - Content-Type: application/json
 - **Body (JSON):**
   ```json
   {
